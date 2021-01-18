@@ -15,10 +15,10 @@ struct MapView: View {
        var body: some View {
            Map(coordinateRegion: $region)
                .onAppear {
-                   setRegion(coordinate)
+                setRegion(coordinate: coordinate)
                }
     }
-    private func setRegion(_ coordinate: CLLocationCoordinate2D) {
+    private func setRegion(coordinate: CLLocationCoordinate2D) {
             region = MKCoordinateRegion(
                 center: coordinate,
                 span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
