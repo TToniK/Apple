@@ -6,14 +6,25 @@
 //
 
 import SwiftUI
+import CoreData
 
 
 struct LandmarkDetail: View {
+    @State private var deleteIndexSet: IndexSet?
+    @State private var showAlert = false
+    @State private var indexSetToDelete: IndexSet?
     @EnvironmentObject var modelData: ModelData
+    @Environment(\.managedObjectContext) var moc
+    @Environment(\.presentationMode) var presentationMode
+    @State private var showingDeleteAlert = false
     var landmark: Landmark
     var landmarkIndex: Int {
-            modelData.landmarks.firstIndex(where: { $0.id == landmark.id })!
+        guard let index = modelData.landmarks.firstIndex(where: { return $0.id == landmark.id }) else {
+            return 0
         }
+        return index
+    }
+
     var body: some View {
         VStack {
             MapView(coordinate: landmark.locationCoordinate)                .ignoresSafeArea(edges: .top)
@@ -44,14 +55,18 @@ struct LandmarkDetail: View {
                                     .font(.title2)
                                 Text(landmark.description)
                             }
+        
             .padding()
 
         
         }
         .navigationTitle(landmark.name)
-                .navigationBarTitleDisplayMode(.inline)
-    }
+        .navigationBarTitleDisplayMode(.inline)
+        
+        
+   
 }
+
 
 struct LandmarkDetail_Previews: PreviewProvider {
     static let modelData = ModelData()
@@ -59,4 +74,5 @@ struct LandmarkDetail_Previews: PreviewProvider {
         LandmarkDetail(landmark: modelData.landmarks[0])
                     .environmentObject(modelData)
     }
+}
 }

@@ -7,8 +7,11 @@
 
 import SwiftUI
 
+
+
 @main
 struct LandmarkApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject private var modelData = ModelData()
     var body: some Scene {
         WindowGroup {
@@ -17,4 +20,11 @@ struct LandmarkApp: App {
                         }
         }
     }
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchWithOptions launchOptions:
+                        [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        print("Deleted")
+        return true
+    }
+}
 
