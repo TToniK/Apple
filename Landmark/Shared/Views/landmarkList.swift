@@ -24,11 +24,14 @@ struct LandmarkList: View {
                 Toggle(isOn: $showFavoritesOnly){
                     Text("Favorites only")
             }
+                
                 ForEach(filteredLandmarks) { landmark in
                 NavigationLink(destination: LandmarkDetail(landmark: landmark)) {
                     LandmarkRow(landmark: landmark)
+                        
+                        
                 }
-                   
+    
                 }
                 
                 .onDelete { (indexSet) in
@@ -50,10 +53,11 @@ struct LandmarkList: View {
                 .navigationBarItems(trailing:
                 EditButton())
             
+            
         }
        
     }
-}
+
 
 struct landmarkList_Previews: PreviewProvider {
     static var previews: some View {
@@ -65,4 +69,4 @@ struct landmarkList_Previews: PreviewProvider {
 }
 }
 
-
+}

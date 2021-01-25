@@ -8,6 +8,8 @@
 import SwiftUI
 import CoreData
 
+    
+  
 
 struct LandmarkDetail: View {
     @State private var deleteIndexSet: IndexSet?
@@ -24,6 +26,8 @@ struct LandmarkDetail: View {
         }
         return index
     }
+    
+
 
     var body: some View {
         VStack {
@@ -62,10 +66,22 @@ struct LandmarkDetail: View {
         }
         .navigationTitle(landmark.name)
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarItems(trailing: Button(action: {
+            self.showAlert = true
+        })
+        {
+            Image(systemName: "trash")
+    }.disabled(false) // Not working
+    //)}
+    //private func delete(at indexSet: IndexSet){
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Are you sure"), message: Text("Yes"))}
+        )}
         
+    
         
    
-}
+
 
 
 struct LandmarkDetail_Previews: PreviewProvider {
@@ -76,3 +92,6 @@ struct LandmarkDetail_Previews: PreviewProvider {
     }
 }
 }
+
+
+
