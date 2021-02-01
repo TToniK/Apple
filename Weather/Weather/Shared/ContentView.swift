@@ -18,6 +18,12 @@ struct ContentView: View {
         VStack() {
             HStack{
             Image(systemName: "magnifyingglass")
+                .onTapGesture {
+                    onCommit: do {
+                        self.weather.fetch(by: self.city)
+                    }
+                    }
+                
                 .foregroundColor(.gray)
                 .frame(minWidth: 0, maxWidth: 1)
                 .padding()
